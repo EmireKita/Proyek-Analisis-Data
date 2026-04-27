@@ -56,7 +56,7 @@ if year == "All":
     st.markdown("📈 Monitoring tren penyewaan sepeda & pengaruh cuaca (2011-2012)")
 else:
     st.markdown(f"📈 Monitoring tren penyewaan sepeda & pengaruh cuaca {year}")
-    
+
 # ========================
 # DATA PREVIEW
 # ========================
@@ -111,7 +111,7 @@ st.pyplot(fig)
 # ========================
 st.subheader("🌦️ Korelasi Cuaca")
 
-corr = filtered_df[['cnt','temp','hum','windspeed']].corr()
+corr = filtered_df[['cnt','temp','hum','windspeed', 'weathersit']].corr()
 
 fig, ax = plt.subplots()
 sns.heatmap(corr, annot=True, cmap='coolwarm', ax=ax)
@@ -127,15 +127,6 @@ sns.scatterplot(x='temp', y='cnt', data=filtered_df, ax=ax)
 st.pyplot(fig)
 
 # ========================
-# HUMIDITY VS RENTAL
-# ========================
-st.subheader("💧 Kelembaban vs Penyewaan")
-
-fig, ax = plt.subplots()
-sns.scatterplot(x='hum', y='cnt', data=filtered_df, ax=ax)
-st.pyplot(fig)
-
-# ========================
 # DEMAND CLUSTER
 # ========================
 if 'demand_cluster' in filtered_df.columns:
@@ -146,7 +137,7 @@ if 'demand_cluster' in filtered_df.columns:
     st.pyplot(fig)
 
 # ========================
-# OPTIONAL: TEMP CATEGORY
+# TEMP CATEGORY
 # ========================
 if 'temp_category' in filtered_df.columns:
     st.subheader("🌡️ Penyewaan Berdasarkan Kategori Suhu")
