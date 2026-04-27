@@ -30,19 +30,12 @@ df = load_data()
 st.sidebar.title("🔍 Filter")
 
 # Filter tahun
-# year = st.sidebar.selectbox("Pilih Tahun", sorted(df['year'].unique()))
 year_options = ["All"] + sorted(df['year'].unique().tolist())
 year = st.sidebar.selectbox("Pilih Tahun", year_options)
 
 # Filter bulan
 month_range = st.sidebar.slider("Rentang Bulan", 1, 12, (1,12))
 
-# Apply filter
-# filtered_df = df[
-#     (df['year'] == year) &
-#     (df['mnth'] >= month_range[0]) &
-#     (df['mnth'] <= month_range[1])
-# ]
 if year == "All":
     filtered_df = df[
         (df['mnth'] >= month_range[0]) &
@@ -59,11 +52,11 @@ else:
 # HEADER
 # ========================
 st.title("🚴 Bike Sharing Dashboard")
-# st.markdown("Monitoring tren penyewaan sepeda & pengaruh cuaca (2011–2012)")
 if year == "All":
     st.markdown("📈 Monitoring tren penyewaan sepeda & pengaruh cuaca (2011-2012)")
 else:
     st.markdown(f"📈 Monitoring tren penyewaan sepeda & pengaruh cuaca {year}")
+    
 # ========================
 # DATA PREVIEW
 # ========================
